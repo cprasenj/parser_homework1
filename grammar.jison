@@ -17,6 +17,7 @@
 "biscuits"            {return 'OBJECT';}
 "likes"               {return 'VERB'}
 "hates"               {return 'VERB'}
+"eats"               {return 'VERB'}
 "also"                {return 'ADVERB'}
 '.'                   {return 'DOT'}
 <<EOF>>               {return 'EOF';}

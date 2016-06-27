@@ -622,16 +622,18 @@ case 8:return 16
 break;
 case 9:return 16
 break;
-case 10:return 18
+case 10:return 16
 break;
-case 11:return 13
+case 11:return 18
 break;
-case 12:return 6;
+case 12:return 13
+break;
+case 13:return 6;
 break;
 }
 },
-rules: [/^(?:\s+)/,/^(?:ram\b)/,/^(?:sita\b)/,/^(?:tea\b)/,/^(?:coffee\b)/,/^(?:butter\b)/,/^(?:cheese\b)/,/^(?:biscuits\b)/,/^(?:likes\b)/,/^(?:hates\b)/,/^(?:also\b)/,/^(?:\.)/,/^(?:$)/],
-conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10,11,12],"inclusive":true}}
+rules: [/^(?:\s+)/,/^(?:ram\b)/,/^(?:sita\b)/,/^(?:tea\b)/,/^(?:coffee\b)/,/^(?:butter\b)/,/^(?:cheese\b)/,/^(?:biscuits\b)/,/^(?:likes\b)/,/^(?:hates\b)/,/^(?:eats\b)/,/^(?:also\b)/,/^(?:\.)/,/^(?:$)/],
+conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10,11,12,13],"inclusive":true}}
 });
 return lexer;
 })();
