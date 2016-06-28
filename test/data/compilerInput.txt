@@ -3,3 +3,6 @@ ram likes coffee.
 ram likes biscuits.
 ram hates butter.
 ram hates cheese.
+sita hates cheese.
+sita likes cheese.
+sita eats cheese.

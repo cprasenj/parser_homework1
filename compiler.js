@@ -5,6 +5,7 @@ var compiler = {};
 
 var decorator = {
   'default' : (accumulations) => {
+    console.log(JSON.stringify(accumulations))
     return accumulations.map((anAccumulation) => {
       var object = anAccumulation['OBJECTS'];
       return object.length > 1 ?
