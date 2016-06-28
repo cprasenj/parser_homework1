@@ -72,12 +72,12 @@
   }
 */
 var grammar = (function(){
-var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,5],$V1=[1,11],$V2=[1,17],$V3=[1,20];
+var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,11],$V1=[1,17],$V2=[1,16],$V3=[1,20];
 var parser = {trace: function trace() { },
 yy: {},
-symbols_: {"error":2,"PROGRAM":3,"SENTENCES":4,"S":5,"EOF":6,"SENTENCE":7,"NAME_PHRASE":8,"VERB_PHRASE":9,"OBJECT_PHRASE":10,"END_PHRASE":11,"ADVERB_PHRASE":12,"DOT":13,"NAME":14,"END_OF_FILE":15,"VERB":16,"OBJECT":17,"ADVERB":18,"SPACE":19,"$accept":0,"$end":1},
-terminals_: {2:"error",5:"S",6:"EOF",13:"DOT",14:"NAME",16:"VERB",17:"OBJECT",18:"ADVERB"},
-productions_: [0,[3,3],[4,1],[7,6],[7,8],[7,6],[7,8],[11,1],[8,1],[15,1],[9,1],[10,1],[12,1],[19,1]],
+symbols_: {"error":2,"PROGRAM":3,"SENTENCES":4,"S":5,"EOF":6,"SENTENCE":7,"NAME_PHRASE":8,"VERB_PHRASE":9,"ACTIONABLE_PHRASE":10,"END_PHRASE":11,"ADVERB_PHRASE":12,"DOT":13,"NAME":14,"END_OF_FILE":15,"VERB":16,"ACTIONABLE":17,"ADVERB":18,"SPACE":19,"$accept":0,"$end":1},
+terminals_: {2:"error",5:"S",6:"EOF",13:"DOT",14:"NAME",16:"VERB",17:"ACTIONABLE",18:"ADVERB"},
+productions_: [0,[3,3],[4,1],[7,6],[7,8],[11,1],[8,1],[15,1],[9,1],[10,1],[10,1],[12,1],[19,1]],
 performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
 /* this == yyval */
 
@@ -89,37 +89,37 @@ break;
 case 2:
 this.$ = createNode('SENTENCES', [$$[$0]]);
 break;
-case 3: case 5:
+case 3:
 return this.$ = createNode('SENTENCE',[$$[$0-5], $$[$0-3], $$[$0-1]]);
 break;
-case 4: case 6:
+case 4:
 return this.$ = createNode('SENTENCE',[$$[$0-7], $$[$0-5], $$[$0-3], $$[$0-1]]);
 break;
-case 7:
+case 5:
 this.$ = createNode('DOT', yytext);
 break;
-case 8:
+case 6:
 this.$ = createNode('NAME', yytext);
 break;
-case 9:
+case 7:
 this.$ = createNode('EOF', yytext);
 break;
-case 10:
+case 8:
 this.$ = createNode('VERB', yytext);
 break;
-case 11:
-this.$ = createNode('OBJECT', yytext);
+case 9: case 10:
+this.$ = createNode('ACTIONABLE', yytext);
 break;
-case 12:
+case 11:
 this.$ = createNode('ADVERB', yytext);
 break;
-case 13:
+case 12:
 this.$ = createNode('S', yytext);
 break;
 }
 },
-table: [{3:1,4:2,7:3,8:4,14:$V0},{1:[3]},{5:[1,6]},{5:[2,2]},{5:[1,7]},o([5,13],[2,8]),{6:[1,8]},{9:9,12:10,16:$V1,18:[1,12]},{1:[2,1]},{5:[1,13]},{5:[1,14]},{5:[2,10]},{5:[2,12]},{8:16,10:15,14:$V0,17:$V2},{9:18,16:$V1},{11:19,13:$V3},{11:21,13:$V3},{13:[2,11]},{5:[1,22]},{5:[2,3]},{5:[2,7]},{5:[2,5]},{8:24,10:23,14:$V0,17:$V2},{11:25,13:$V3},{11:26,13:$V3},{5:[2,4]},{5:[2,6]}],
-defaultActions: {3:[2,2],8:[2,1],11:[2,10],12:[2,12],17:[2,11],19:[2,3],20:[2,7],21:[2,5],25:[2,4],26:[2,6]},
+table: [{3:1,4:2,7:3,8:4,14:[1,5]},{1:[3]},{5:[1,6]},{5:[2,2]},{5:[1,7]},{5:[2,6]},{6:[1,8]},{9:9,12:10,16:$V0,18:[1,12]},{1:[2,1]},{5:[1,13]},{5:[1,14]},{5:[2,8]},{5:[2,11]},{10:15,14:$V1,17:$V2},{9:18,16:$V0},{11:19,13:$V3},{13:[2,9]},{13:[2,10]},{5:[1,21]},{5:[2,3]},{5:[2,5]},{10:22,14:$V1,17:$V2},{11:23,13:$V3},{5:[2,4]}],
+defaultActions: {3:[2,2],5:[2,6],8:[2,1],11:[2,8],12:[2,11],16:[2,9],17:[2,10],19:[2,3],20:[2,5],23:[2,4]},
 parseError: function parseError(str, hash) {
     if (hash.recoverable) {
         this.trace(str);
@@ -622,18 +622,16 @@ case 8:return 16
 break;
 case 9:return 16
 break;
-case 10:return 16
+case 10:return 18
 break;
-case 11:return 18
+case 11:return 13
 break;
-case 12:return 13
-break;
-case 13:return 6;
+case 12:return 6;
 break;
 }
 },
-rules: [/^(?:\s+)/,/^(?:ram\b)/,/^(?:sita\b)/,/^(?:tea\b)/,/^(?:coffee\b)/,/^(?:butter\b)/,/^(?:cheese\b)/,/^(?:biscuits\b)/,/^(?:likes\b)/,/^(?:hates\b)/,/^(?:eats\b)/,/^(?:also\b)/,/^(?:\.)/,/^(?:$)/],
-conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10,11,12,13],"inclusive":true}}
+rules: [/^(?:\s+)/,/^(?:ram\b)/,/^(?:sita\b)/,/^(?:tea\b)/,/^(?:coffee\b)/,/^(?:butter\b)/,/^(?:cheese\b)/,/^(?:biscuits\b)/,/^(?:likes\b)/,/^(?:hates\b)/,/^(?:also\b)/,/^(?:\.)/,/^(?:$)/],
+conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10,11,12],"inclusive":true}}
 });
 return lexer;
 })();

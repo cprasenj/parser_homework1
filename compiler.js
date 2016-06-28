@@ -5,15 +5,18 @@ var compiler = {};
 
 var decorator = {
   'default' : (accumulations) => {
-    console.log(JSON.stringify(accumulations))
-    return accumulations.map((anAccumulation) => {
-      var object = anAccumulation['OBJECTS'];
-      return object.length > 1 ?
-      stringUtil.format('%s %s %s and %s',
-        anAccumulation['NAME'], anAccumulation['VERB'], _.dropRight(object).join(', '), _.last(object)) :
-      stringUtil.format('%s %s %s',
-        anAccumulation['NAME'], anAccumulation['VERB'], _.head(object));
-    })
+    return _.flatten(accumulations.map((anAccumulation) => {
+        var name = anAccumulation['NAME'];
+        return anAccumulation['VERBS'].map((verbObjectMap) => {
+            var verb = _.findKey(verbObjectMap);
+            var objects = verbObjectMap[verb];
+            return _.flatten(objects).length > 1 ?
+            stringUtil.format('%s %s %s and %s',
+              name, verb, _.dropRight(objects).join(', '), _.last(objects)) :
+            stringUtil.format('%s %s %s',
+              name, verb, _.head(objects));
+        })
+    }))
   }
 }
 

@@ -10,14 +10,13 @@
 \s+                   {return 'S';}
 "ram"                 {return 'NAME';}
 "sita"                {return 'NAME';}
-"tea"                 {return 'OBJECT';}
-"coffee"              {return 'OBJECT';}
-"butter"              {return 'OBJECT';}
-"cheese"              {return 'OBJECT';}
-"biscuits"            {return 'OBJECT';}
+"tea"                 {return 'ACTIONABLE';}
+"coffee"              {return 'ACTIONABLE';}
+"butter"              {return 'ACTIONABLE';}
+"cheese"              {return 'ACTIONABLE';}
+"biscuits"            {return 'ACTIONABLE';}
 "likes"               {return 'VERB'}
 "hates"               {return 'VERB'}
-"eats"               {return 'VERB'}
 "also"                {return 'ADVERB'}
 '.'                   {return 'DOT'}
 <<EOF>>               {return 'EOF';}
@@ -37,15 +36,11 @@ SENTENCES
 ;
 
 SENTENCE
- : NAME_PHRASE S VERB_PHRASE S OBJECT_PHRASE END_PHRASE
+ : NAME_PHRASE S VERB_PHRASE S ACTIONABLE_PHRASE END_PHRASE
     {return $$ = createNode('SENTENCE',[$1, $3, $5]);}
- | NAME_PHRASE S ADVERB_PHRASE S VERB_PHRASE S OBJECT_PHRASE END_PHRASE
+ | NAME_PHRASE S ADVERB_PHRASE S VERB_PHRASE S ACTIONABLE_PHRASE END_PHRASE
     {return $$ = createNode('SENTENCE',[$1, $3, $5, $7]);}
- | NAME_PHRASE S VERB_PHRASE S NAME_PHRASE END_PHRASE
-    {return $$ = createNode('SENTENCE',[$1, $3, $5]);}
- | NAME_PHRASE S ADVERB_PHRASE S VERB_PHRASE S NAME_PHRASE END_PHRASE
-    {return $$ = createNode('SENTENCE',[$1, $3, $5, $7]);}
- ;
+  ;
 
 END_PHRASE
  : DOT
@@ -67,9 +62,11 @@ VERB_PHRASE
    {$$ = createNode('VERB', yytext);}
 ;
 
-OBJECT_PHRASE
-: OBJECT
-   {$$ = createNode('OBJECT', yytext);}
+ACTIONABLE_PHRASE
+: ACTIONABLE
+   {$$ = createNode('ACTIONABLE', yytext);}
+| NAME
+   {$$ = createNode('ACTIONABLE', yytext);}
 ;
 
 ADVERB_PHRASE
