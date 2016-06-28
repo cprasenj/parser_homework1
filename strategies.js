@@ -12,17 +12,15 @@ exports.strategies = {
       return result;
     }, [])
     .map((aPartition) => {
-      var head = _.head(aPartition);
-      var verbs = _.flowRight(_.uniq, _.values, _.mapValues)(aPartition, 'VERB');
-      var objectSameVerb = verbs.map((aVerb) => {
-        var result = {};
-        result[aVerb] = aPartition.filter((sentence) => sentence['VERB'] == aVerb)
-               .map((aFilteredSentence) => aFilteredSentence['ACTIONABLE']);
-        return result;
-      })
       return {
-        'NAME': head['NAME'],
-        'VERBS': objectSameVerb
+        'NAME': _.head(aPartition)['NAME'],
+        'VERBS': _.flowRight(_.uniq, _.values, _.mapValues)(aPartition, 'VERB')
+          .map((aVerb) => {
+              var result = {};
+              result[aVerb] = _.filter(aPartition, {'VERB':aVerb})
+                     .map((aFilteredSentence) => aFilteredSentence['ACTIONABLE']);
+              return result;
+            })
       }
     })
   }
