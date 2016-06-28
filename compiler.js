@@ -3,8 +3,7 @@ var stringUtil = require('util');
 var _ = require('lodash');
 var compiler = {};
 
-var decorator = {
-  'default' : (accumulations) => {
+var decorator = function(accumulations){
     return _.flatten(accumulations.map((anAccumulation) => {
         var name = anAccumulation['NAME'];
         return anAccumulation['VERBS'].map((verbObjectMap) => {
@@ -18,7 +17,6 @@ var decorator = {
         })
     }))
   }
-}
 
 compiler.group = function(parseTree) {
   return parseTree.map((node) => {
@@ -31,7 +29,7 @@ compiler.group = function(parseTree) {
 
 compiler.compile = function(inputFileName, strategies){
   return _.flowRight(
-    decorator['default'],
+      decorator,
     _.valuesIn(strategies),
      compiler.group,
      parser.createParseTree
